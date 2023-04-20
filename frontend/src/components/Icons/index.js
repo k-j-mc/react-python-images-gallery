@@ -1,23 +1,20 @@
 import React, { forwardRef } from "react";
 
-import Add from "@mui/icons-material/Add";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import BubbleChartIcon from "@mui/icons-material/BubbleChart";
+import CloseIcon from "@mui/icons-material/Close";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import MenuIcon from "@mui/icons-material/Menu";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import TroubleshootIcon from "@mui/icons-material/Troubleshoot";
+import Search from "@mui/icons-material/Search";
 
 
 const Icons = {
   
-  Add: forwardRef((props, ref) => <Add {...props} ref={ref} />),
-  AddCircle: forwardRef((props, ref) => <AddCircleIcon {...props} ref={ref} />),
-  BubbleChartIcon: forwardRef((props, ref) => <BubbleChartIcon {...props} ref={ref} />),
-  Menu: forwardRef((props, ref) => <MenuIcon {...props} ref={ref} />),
-  PictureAsPdfIcon: forwardRef((props, ref) => <PictureAsPdfIcon {...props} ref={ref} />),
-  Restart: forwardRef((props, ref) => <RestartAltIcon {...props} ref={ref} />),
-  TroubleshootIcon: forwardRef((props, ref) => <TroubleshootIcon {...props} ref={ref} />),
+  Close: forwardRef((props, ref) => <CloseIcon {...props} ref={ref} />),
+  CloseMenu: forwardRef((props, ref) => <CloseIcon {...props} ref={ref} style={{ color: "#fff" }} />),
+  DarkMode: forwardRef((props, ref) => <DarkModeIcon {...props} ref={ref} />),
+  LightMode: forwardRef((props, ref) => <LightModeIcon {...props} />),
+  Menu: forwardRef((props, ref) => <MenuIcon {...props} ref={ref} style={{ color: "#fff" }} />),
+  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
 
 };
 

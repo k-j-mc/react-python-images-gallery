@@ -1,0 +1,21 @@
+.appBarShadow {
+    height: 25px;
+    background: linear-gradient(180deg, rgba(97,219,252,0.3) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.menu {
+    margin-top: 18px;
+}
+
+.menuItem {
+    height: 40px;
+}
+
+.menuLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menuIcon {
+    margin-right: 15px;
+}
