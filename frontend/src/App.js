@@ -1,8 +1,14 @@
+import { ThemeProvider } from "@mui/material/styles";
+
+import NavBar from "./components/NavBar";
+
+import theme from "./styling/theme";
+
 const App = () => {
   return (
-    <div className="App">
-      <h1>Images Gallery</h1>
-    </div>
+    <ThemeProvider theme={theme}>
+      <NavBar title="Images Gallery" />
+    </ThemeProvider>
   );
 }
 
