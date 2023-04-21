@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useDispatch } from "react-redux";
+import { getTheme } from "../../reducers/themeSlice";
 
 import { Link } from "react-router-dom";
 
 import { Divider, Menu, MenuItem } from "@mui/material";
+
 
 import Icons from "../Icons";
 
@@ -11,10 +15,19 @@ import "./navBar.css";
 
 const NavMenu = (props) => {
 
-  const { anchorEl, setAnchorEl, openMenu, theme, setTheme } = props;
+  const dispatch = useDispatch();
+
+  const { anchorEl, setAnchorEl, openMenu } = props;
+
+  const [theme, setTheme] = useState("Light");
 
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleTheme = () => {
+    setTheme((prevMode) => (prevMode === "Light" ? "Dark" : "Light"))
+    dispatch(getTheme(theme))
   };
 
   return (
@@ -25,9 +38,7 @@ const NavMenu = (props) => {
       className="menu"
       >
       <MenuItem
-        onClick={() =>
-          setTheme((prevMode) => (prevMode === "Light" ? "Dark" : "Light"))
-        }
+        onClick={handleTheme}
         className="menuItem"
       >
         {theme === "Dark" ? (

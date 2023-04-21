@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material/";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material/";
 
 import NavMenu from "./NavMenu";
 
@@ -9,7 +9,7 @@ import Icons from "../Icons";
 
 const NavBar = (props) => {
 
-  const { theme, setTheme, title } = props;
+  const { title } = props;
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -24,16 +24,13 @@ const NavBar = (props) => {
       <AppBar
         position="static"
         className="appBar"
-        sx={{ backgroundColor: "black" }}
       >
         <Toolbar>
-          <h2>{title}</h2>
+          <Typography variant="h5">{title}</Typography>
           <IconButton onClick={handleOpenMenu} style={{ marginLeft: "auto" }}>
-            {openMenu === false ? <Icons.Menu /> : <Icons.CloseMenu />}
+            {openMenu === false ? <Icons.Menu /> : <Icons.Close />}
           </IconButton>
           <NavMenu
-            theme={theme}
-            setTheme={setTheme}
             openMenu={openMenu}
             anchorEl={anchorEl}
             setAnchorEl={setAnchorEl}

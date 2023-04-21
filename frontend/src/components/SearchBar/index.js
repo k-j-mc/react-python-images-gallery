@@ -1,14 +1,12 @@
 import React from "react";
 
-import { Button, Grid, IconButton, TextField } from "@mui/material";
+import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 
 import Icons from "../Icons";
 
 import "./searchBar.css";
 
-
 const SearchBar = (props) => {
-
   const { handleSearch, searchQuery, setSearchQuery } = props;
 
   return (
@@ -38,11 +36,11 @@ const SearchBar = (props) => {
       <Grid item xs={2}>
         <Button
           variant="contained"
-          className="searchButton"
+          color="primary"
           onClick={handleSearch}
+          startIcon={<Icons.Search />}
         >
-          <Icons.Search className="searchIcon" />
-          Search
+          <Typography style={{ color: "#FFFFFF" }}>Search</Typography>
         </Button>
       </Grid>
       <Grid item xs={1} />

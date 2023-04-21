@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getTheme } from "./reducers/themeSlice";
+import { searchImages } from "./reducers/imageSearchSlice";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -9,45 +13,38 @@ import SearchBar from "./components/SearchBar";
 
 const App = () => {
 
-  const [theme, setTheme] = useState("Dark");
+  const dispatch = useDispatch();
+
+  const themeData = useSelector((state) => state.theme.data);
+  const searchData = useSelector((state) => state.imageSearch);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [imageData, setImageData] = useState([]);
+  
+  useEffect(() => {
+    dispatch(getTheme());
+    
+    if(searchData.status === "succeeded") {
+      setImageData(searchData.data);
+    };
+  }, [dispatch]);
 
-  const styling = createTheme({
-    palette: {
-      mode: theme.toLowerCase(),
-      primary: {
-        main: "#1976d2",
-      },
-    },
-    typography: {
-      allVariants: {
-        fontFamily: "montserrat",
-        textTransform: "none",
-        fontSize: 16,
-      },
-    },
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            borderRadius: 28,
-          },
-        },
-        },
-    },
-  });
+  const theme = createTheme(themeData);
 
   const handleSearch = () => {
-    console.log(searchQuery)
+    dispatch(searchImages(searchQuery))
   };
 
 
   return (
-    <ThemeProvider theme={styling}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <NavBar title="Images Gallery" theme={theme} setTheme={setTheme} />
-      <SearchBar handleSearch={handleSearch} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <NavBar title="Images Gallery" />
+      <SearchBar
+        handleSearch={handleSearch}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
     </ThemeProvider>
   );
 };

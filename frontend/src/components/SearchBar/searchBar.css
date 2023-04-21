@@ -4,10 +4,5 @@
 
 .inputRounded .MuiOutlinedInput-root {
     border-radius: 200px;
-    height: 45px;
-    margin-top: -3px;
-}
-
-.searchIcon {
-    margin-right: 10px;
+    height: 37px;
 }

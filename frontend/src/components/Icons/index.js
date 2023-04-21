@@ -10,11 +10,10 @@ import Search from "@mui/icons-material/Search";
 const Icons = {
   
   Close: forwardRef((props, ref) => <CloseIcon {...props} ref={ref} />),
-  CloseMenu: forwardRef((props, ref) => <CloseIcon {...props} ref={ref} style={{ color: "#fff" }} />),
   DarkMode: forwardRef((props, ref) => <DarkModeIcon {...props} ref={ref} />),
   LightMode: forwardRef((props, ref) => <LightModeIcon {...props} />),
-  Menu: forwardRef((props, ref) => <MenuIcon {...props} ref={ref} style={{ color: "#fff" }} />),
-  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+  Menu: forwardRef((props, ref) => <MenuIcon {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <Search {...props} ref={ref} style={{ color: "#FFFFFF" }} />),
 
 };
 
