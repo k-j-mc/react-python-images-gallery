@@ -10,9 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 
-
 const App = () => {
-
   const dispatch = useDispatch();
 
   const themeData = useSelector((state) => state.theme.data);
@@ -20,21 +18,21 @@ const App = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [imageData, setImageData] = useState([]);
-  
+
   useEffect(() => {
     dispatch(getTheme());
-    
-    if(searchData.status === "succeeded") {
+
+    if (searchData.status === "succeeded") {
       setImageData(searchData.data);
-    };
+    }
   }, [dispatch]);
 
   const theme = createTheme(themeData);
 
   const handleSearch = () => {
-    dispatch(searchImages(searchQuery))
+    dispatch(searchImages(searchQuery));
+    setSearchQuery("");
   };
-
 
   return (
     <ThemeProvider theme={theme}>

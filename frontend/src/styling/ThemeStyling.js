@@ -24,7 +24,7 @@ const ThemeStyling = {
     allVariants: {
       fontFamily: "montserrat",
       textTransform: "none",
-      color: "#FFFFFF"
+      color: "#FFFFFF",
     },
   },
   components: {
@@ -34,14 +34,14 @@ const ThemeStyling = {
           borderRadius: 28,
         },
       },
-      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#111111"
+          backgroundColor: "#111111",
         },
       },
-      },
+    },
   },
 };
 
