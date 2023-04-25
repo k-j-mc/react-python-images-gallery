@@ -1,3 +1,8 @@
+.svgLogo {
+    max-height: 3rem;
+    margin-left: -60px;
+}
+
 .appBarShadow {
     height: 25px;
     background: linear-gradient(180deg, rgba(97,219,252,0.3) 0%, rgba(0, 0, 0, 0) 100%);

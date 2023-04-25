@@ -44,7 +44,7 @@ const ImageCard = ({ data, handleDeleteImage, loaded, setLoaded }) => {
 				<React.Fragment key={d.id}>
 					<Grid item xs={1} />
 					<Grid item xs={10} md={4} lg={2}>
-						<Card sx={{ marginTop: "50px" }}>
+						<Card>
 							<div>
 								<CardHeading
 									data={d}

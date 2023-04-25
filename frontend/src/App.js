@@ -10,6 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import ImageCard from "./components/ImageCard";
+import NoResults from "./components/NoResults";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -52,13 +53,15 @@ const App = () => {
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 			/>
-			{!!ImageData.length && (
+			{imageData.length > 0 ? (
 				<ImageCard
 					data={imageData}
 					loaded={loaded}
 					setLoaded={setLoaded}
 					handleDeleteImage={handleDeleteImage}
 				/>
+			) : (
+				<NoResults />
 			)}
 		</ThemeProvider>
 	);

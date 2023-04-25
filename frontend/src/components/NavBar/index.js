@@ -8,7 +8,9 @@ import NavMenu from "./NavMenu";
 
 import Icons from "../Icons";
 
-const NavBar = () => {
+const NavBar = (props) => {
+	const { title } = props;
+
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const openMenu = Boolean(anchorEl);
@@ -21,7 +23,7 @@ const NavBar = () => {
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static" className="appBar">
 				<Toolbar>
-					<Logo />
+					<Logo alt={title} className="svgLogo" />
 					<IconButton
 						onClick={handleOpenMenu}
 						style={{ marginLeft: "auto" }}
