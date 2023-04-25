@@ -9,42 +9,48 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
+import ImageCard from "./components/ImageCard";
 
 const App = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const themeData = useSelector((state) => state.theme.data);
-  const searchData = useSelector((state) => state.imageSearch);
+	const themeData = useSelector((state) => state.theme.data);
+	const searchData = useSelector((state) => state.imageSearch);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [imageData, setImageData] = useState([]);
+	const [searchQuery, setSearchQuery] = useState("");
+	const [imageData, setImageData] = useState([]);
+	const [loaded, setLoaded] = useState(true);
 
-  useEffect(() => {
-    dispatch(getTheme());
+	useEffect(() => {
+		dispatch(getTheme());
+	}, [dispatch]);
 
-    if (searchData.status === "succeeded") {
-      setImageData(searchData.data);
-    }
-  }, [dispatch]);
+	const theme = createTheme(themeData);
 
-  const theme = createTheme(themeData);
+	const handleSearch = () => {
+		setLoaded(false);
+		dispatch(searchImages(searchQuery));
+		setSearchQuery("");
+	};
 
-  const handleSearch = () => {
-    dispatch(searchImages(searchQuery));
-    setSearchQuery("");
-  };
+	useEffect(() => {
+		if (searchData.status === "succeeded") {
+			setImageData([searchData.data, ...imageData]);
+		}
+	}, [searchData]);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <NavBar title="Images Gallery" />
-      <SearchBar
-        handleSearch={handleSearch}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<NavBar title="Images Gallery" />
+			<SearchBar
+				handleSearch={handleSearch}
+				searchQuery={searchQuery}
+				setSearchQuery={setSearchQuery}
+			/>
+			<ImageCard data={imageData} loaded={loaded} setLoaded={setLoaded} />
+		</ThemeProvider>
+	);
 };
 
 export default App;
