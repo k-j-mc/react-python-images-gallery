@@ -10,28 +10,7 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "rainbowBrackets.roundBracketsColor": [
-    
-
-        "#E8BA36",
-        "#54A857",
-        "#359FF4",
-        "#5060BB",
-    ],
     "vetur.format.options.tabSize": 4,
     "editor.detectIndentation": false,
     "editor.bracketPairColorization.enabled": false,
-    "rainbowBrackets.isolatedRightBracketsColor": "#005FA3",
-    "rainbowBrackets.squareBracketsColor": [
-
-        "#33ccff",
-        "#8080ff",
-        "#0073a8"
-    ],
-    "rainbowBrackets.squigglyBracketsColor": [
-        
-        "#484c61",
-        "#d1a075",
-        "#9c6628"
-    ]
 }
