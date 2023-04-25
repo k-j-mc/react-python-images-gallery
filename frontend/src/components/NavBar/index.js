@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material/";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material/";
+
+import { ReactComponent as Logo } from "../../images/Images Gallery.svg";
 
 import NavMenu from "./NavMenu";
 
 import Icons from "../Icons";
 
-const NavBar = (props) => {
-	const { title } = props;
-
+const NavBar = () => {
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const openMenu = Boolean(anchorEl);
@@ -21,7 +21,7 @@ const NavBar = (props) => {
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static" className="appBar">
 				<Toolbar>
-					<Typography variant="h5">{title}</Typography>
+					<Logo />
 					<IconButton
 						onClick={handleOpenMenu}
 						style={{ marginLeft: "auto" }}
