@@ -12,12 +12,13 @@ import CardAvatar from "./CardAvatar";
 import Icons from "../Icons";
 
 const CardHeading = (props) => {
-	const { data, handleImageLoading } = props;
+	const { data, handleDeleteImage, handleImageLoading } = props;
 
 	const menuItems = [
-		{ name: "Full", link: data.urls.full },
-		{ name: "Raw", link: data.urls.raw },
-		{ name: "Regular", link: data.urls.regular },
+		{ name: "View Full resolution", link: data.urls.full },
+		{ name: "View Raw resolution", link: data.urls.raw },
+		{ name: "View Regular resolution", link: data.urls.regular },
+		{ name: "Remove ", link: data.urls.regular },
 	];
 
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -28,6 +29,12 @@ const CardHeading = (props) => {
 	};
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+
+	const handleMenuClick = (e) => {
+		if (e.actionId === 3) {
+			handleDeleteImage(e.imageId);
+		}
 	};
 
 	return (
@@ -48,15 +55,20 @@ const CardHeading = (props) => {
 							{menuItems.map((d, i) => (
 								<MenuItem
 									key={i.toString()}
-									onClick={handleClose}
+									onClick={() =>
+										handleMenuClick({
+											imageId: data.id,
+											actionId: i,
+										})
+									}
 								>
-									View {d.name} resolution image
+									{d.name} image
 								</MenuItem>
 							))}
 						</Menu>
 					</>
 				}
-				title={data.title}
+				title={data.title.toUpperCase()}
 				subheader={new Date(data.created_at).toLocaleDateString(
 					undefined,
 					{
@@ -68,7 +80,7 @@ const CardHeading = (props) => {
 			/>
 			<CardMedia
 				component="img"
-				height="194"
+				height="250"
 				image={data.urls.small}
 				alt={data.title}
 				style={{ marginBottom: "30px" }}

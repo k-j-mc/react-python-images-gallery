@@ -33,6 +33,10 @@ const App = () => {
 		setSearchQuery("");
 	};
 
+	const handleDeleteImage = (id) => {
+		setImageData(imageData.filter((image) => image.id !== id));
+	};
+
 	useEffect(() => {
 		if (searchData.status === "succeeded") {
 			setImageData([searchData.data, ...imageData]);
@@ -48,7 +52,14 @@ const App = () => {
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 			/>
-			<ImageCard data={imageData} loaded={loaded} setLoaded={setLoaded} />
+			{!!ImageData.length && (
+				<ImageCard
+					data={imageData}
+					loaded={loaded}
+					setLoaded={setLoaded}
+					handleDeleteImage={handleDeleteImage}
+				/>
+			)}
 		</ThemeProvider>
 	);
 };

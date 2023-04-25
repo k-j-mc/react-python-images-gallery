@@ -7,7 +7,7 @@ import CardHeading from "./CardHeading";
 import CardActionButtons from "./CardActionButtons";
 import CardInfo from "./CardInfo";
 
-const ImageCard = ({ data, loaded, setLoaded }) => {
+const ImageCard = ({ data, handleDeleteImage, loaded, setLoaded }) => {
 	const [expanded, setExpanded] = useState({});
 	const [imageLoaded, setImageLoaded] = useState({});
 
@@ -49,6 +49,7 @@ const ImageCard = ({ data, loaded, setLoaded }) => {
 								<CardHeading
 									data={d}
 									handleImageLoading={handleImageLoading}
+									handleDeleteImage={handleDeleteImage}
 								/>
 								<CardActionButtons
 									data={d}
