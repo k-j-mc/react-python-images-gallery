@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
+const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:5050";
 
 const initialState = {
 	data: [],
@@ -11,9 +11,7 @@ const initialState = {
 
 export const searchImages = createAsyncThunk("searchImages", async (e) => {
 	const response = await axios
-		.get(
-			`https://api.unsplash.com/photos/random/?query=${e}&client_id=${UNSPLASH_KEY}`
-		)
+		.get(`${API_URL}/new-image?query=${e}`)
 		.then((response) => ({ ...response.data, title: e }))
 		.catch((error) => error);
 
