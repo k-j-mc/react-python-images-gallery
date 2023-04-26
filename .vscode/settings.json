@@ -13,4 +13,15 @@
     "vetur.format.options.tabSize": 4,
     "editor.detectIndentation": false,
     "editor.bracketPairColorization.enabled": false,
+    "python.pythonPath": "api/.venv/bin/python3",
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pycodestyleArgs": [
+        "--max-line-length=88"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "none",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
 }
