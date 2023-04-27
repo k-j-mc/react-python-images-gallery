@@ -41,6 +41,7 @@ const App = () => {
 	useEffect(() => {
 		if (searchData.status === "succeeded") {
 			setImageData([searchData.data, ...imageData]);
+			setLoaded(true);
 		}
 	}, [searchData]);
 

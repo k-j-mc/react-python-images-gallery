@@ -12,7 +12,7 @@ import CardAvatar from "./CardAvatar";
 import Icons from "../Icons";
 
 const CardHeading = (props) => {
-	const { data, handleDeleteImage, handleImageLoading } = props;
+	const { data, handleDeleteImage } = props;
 
 	const menuItems = [
 		{ name: "View Full resolution", link: data.urls.full },
@@ -84,7 +84,6 @@ const CardHeading = (props) => {
 				image={data.urls.small}
 				alt={data.title}
 				style={{ marginBottom: "30px" }}
-				onLoad={() => handleImageLoading(data.id)}
 			/>
 		</div>
 	);

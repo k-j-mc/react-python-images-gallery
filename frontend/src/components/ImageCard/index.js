@@ -7,9 +7,8 @@ import CardHeading from "./CardHeading";
 import CardActionButtons from "./CardActionButtons";
 import CardInfo from "./CardInfo";
 
-const ImageCard = ({ data, handleDeleteImage, loaded, setLoaded }) => {
+const ImageCard = ({ data, handleDeleteImage, loaded }) => {
 	const [expanded, setExpanded] = useState({});
-	const [imageLoaded, setImageLoaded] = useState({});
 
 	const handleExpandClick = (id) => {
 		setExpanded((expanded) => ({
@@ -17,17 +16,6 @@ const ImageCard = ({ data, handleDeleteImage, loaded, setLoaded }) => {
 			[id]: !expanded[id],
 		}));
 	};
-
-	const handleImageLoading = (id) => {
-		setImageLoaded((imageLoaded) => ({
-			...imageLoaded,
-			[id]: !imageLoaded[id],
-		}));
-	};
-
-	useEffect(() => {
-		setLoaded(true);
-	}, [imageLoaded]);
 
 	return (
 		<Grid container>
@@ -48,7 +36,6 @@ const ImageCard = ({ data, handleDeleteImage, loaded, setLoaded }) => {
 							<div>
 								<CardHeading
 									data={d}
-									handleImageLoading={handleImageLoading}
 									handleDeleteImage={handleDeleteImage}
 								/>
 								<CardActionButtons
