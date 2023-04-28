@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Card, Collapse, Grid } from "@mui/material";
 
@@ -32,7 +32,7 @@ const ImageCard = ({ data, handleDeleteImage, loaded }) => {
 				<React.Fragment key={d.id}>
 					<Grid item xs={1} />
 					<Grid item xs={10} md={4} lg={2}>
-						<Card>
+						<Card className="imageCard">
 							<div>
 								<CardHeading
 									data={d}

@@ -47,7 +47,7 @@ const CardAvatar = ({ user }) => {
 
 	return (
 		<Tooltip title={user.name}>
-			<Avatar {...stringAvatar(user.name)} />
+			<Avatar {...stringAvatar(user.name.toUpperCase())} />
 		</Tooltip>
 	);
 };

@@ -81,7 +81,7 @@ const CardHeading = (props) => {
 			<CardMedia
 				component="img"
 				height="250"
-				image={data.urls.small}
+				image={data.urls.regular}
 				alt={data.title}
 				style={{ marginBottom: "30px" }}
 			/>
