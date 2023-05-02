@@ -12,7 +12,7 @@ const initialState = {
 export const imagesFetch = createAsyncThunk("imagesFetch", async () => {
 	const response = await axios
 		.get("http://127.0.0.1:5050/images")
-		.then((response) => response.data)
+		.then((response) => response.data.reverse())
 		.catch((error) => error);
 
 	return response;

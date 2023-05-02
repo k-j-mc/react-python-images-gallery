@@ -7,7 +7,7 @@ import CardHeading from "./CardHeading";
 import CardActionButtons from "./CardActionButtons";
 import CardInfo from "./CardInfo";
 
-const ImageCard = ({ data, handleDeleteImage, loaded }) => {
+const ImageCard = ({ data, handleDeleteImage, handleSaveImage, loaded }) => {
 	const [expanded, setExpanded] = useState({});
 
 	const handleExpandClick = (id) => {
@@ -42,6 +42,7 @@ const ImageCard = ({ data, handleDeleteImage, loaded }) => {
 									data={d}
 									expanded={expanded[d.id]}
 									handleExpandClick={handleExpandClick}
+									handleSaveImage={handleSaveImage}
 								/>
 								<Collapse
 									in={expanded[d.id]}

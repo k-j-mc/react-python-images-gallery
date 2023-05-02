@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTheme } from "./reducers/themeSlice";
 import { searchImages } from "./reducers/imageSearchSlice";
 import { imagesFetch } from "./reducers/imagesFetchSlice";
+import { imageSave } from "./reducers/imageSaveSlice";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -31,6 +32,13 @@ const App = () => {
 		dispatch(imagesFetch());
 	}, []);
 
+	useEffect(() => {
+		setImageData(fetchedData);
+		setTimeout(() => {
+			setLoaded(true);
+		}, [500]);
+	}, [fetchedData]);
+
 	const theme = createTheme(themeData);
 
 	const handleSearch = () => {
@@ -39,16 +47,36 @@ const App = () => {
 		setSearchQuery("");
 	};
 
+	const handleSaveImage = (id) => {
+		const imageToSave = imageData.find((image) => image.id === id);
+
+		const imagePlusData = {
+			...imageToSave,
+			liked_by_user: true,
+			likes: imageToSave.likes + 1,
+		};
+
+		if (imageToSave.liked_by_user === false) {
+			dispatch(imageSave(imagePlusData));
+			setImageData(
+				imageData.map((image) =>
+					image.id === id
+						? {
+								...image,
+								liked_by_user: true,
+								likes: image.likes + 1,
+						  }
+						: image
+				)
+			);
+		} else {
+			handleDeleteImage(id);
+		}
+	};
+
 	const handleDeleteImage = (id) => {
 		setImageData(imageData.filter((image) => image.id !== id));
 	};
-
-	useEffect(() => {
-		setImageData(fetchedData);
-		setTimeout(() => {
-			setLoaded(true);
-		}, [500]);
-	}, [fetchedData]);
 
 	useEffect(() => {
 		if (searchData.status === "succeeded") {
@@ -73,6 +101,7 @@ const App = () => {
 						data={imageData}
 						loaded={imageLoaded}
 						setLoaded={setImageLoaded}
+						handleSaveImage={handleSaveImage}
 						handleDeleteImage={handleDeleteImage}
 					/>
 				) : (

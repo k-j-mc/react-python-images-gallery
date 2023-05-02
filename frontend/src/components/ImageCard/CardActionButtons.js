@@ -5,7 +5,7 @@ import { Badge, CardActions, IconButton, Tooltip } from "@mui/material";
 import Icons from "../Icons";
 
 const CardActionButtons = (props) => {
-	const { data, expanded, handleExpandClick } = props;
+	const { data, expanded, handleExpandClick, handleSaveImage } = props;
 
 	const [tooltipText, setTooltipText] = useState("More");
 
@@ -19,9 +19,20 @@ const CardActionButtons = (props) => {
 
 	return (
 		<CardActions disableSpacing>
-			<Tooltip title={`Liked ${data.likes.toLocaleString()} times`}>
-				<IconButton aria-label="add to favorites">
-					<Icons.Favorite />
+			<Tooltip
+				title={
+					data.liked_by_user === true
+						? `You and ${data.likes.toLocaleString()} others like this image`
+						: `Liked ${data.likes.toLocaleString()} times by users`
+				}
+			>
+				<IconButton
+					aria-label="add to favorites"
+					onClick={() => handleSaveImage(data.id)}
+				>
+					<Icons.Favorite
+						color={data.liked_by_user === true ? "error" : ""}
+					/>
 					<Badge
 						badgeContent={data.likes}
 						color="error"
