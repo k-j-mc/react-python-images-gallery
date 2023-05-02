@@ -28,8 +28,13 @@ export const searchImagesSlice = createSlice({
 		});
 
 		builder.addCase(searchImages.fulfilled, (state, action) => {
-			state.data = action.payload;
-			state.status = "succeeded";
+			if (action.payload.errors) {
+				state.data = action.payload;
+				state.status = "failed";
+			} else {
+				state.data = action.payload;
+				state.status = "succeeded";
+			}
 		});
 
 		builder.addCase(searchImages.rejected, (state, action) => {
