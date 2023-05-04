@@ -27,9 +27,11 @@ const App = () => {
 	const themeData = useSelector((state) => state.theme.data);
 	const searchData = useSelector((state) => state.imageSearch);
 	const fetchedData = useSelector((state) => state.imagesFetch.data);
+	const imageDeletion = useSelector((state) => state.imageDelete);
 
 	const [searchQuery, setSearchQuery] = useState("");
 	const [imageData, setImageData] = useState([]);
+	const [singleImage, setSingleImage] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const [imageLoaded, setImageLoaded] = useState(true);
 
@@ -41,6 +43,12 @@ const App = () => {
 	useEffect(() => {
 		setImageData(fetchedData);
 		setTimeout(() => {
+			if (fetchedData.length > 0) {
+				handleNotification({
+					message: "Images fetched from database!",
+					variant: "success",
+				});
+			}
 			setLoaded(true);
 		}, [500]);
 	}, [fetchedData]);
@@ -75,27 +83,37 @@ const App = () => {
 						: image
 				)
 			);
-			dispatch(
-				sendNotification({
-					message: `Success: Liked ${imagePlusData.title}!`,
-					variant: "success",
-				})
-			);
+			handleNotification({
+				message: `Liked ${imagePlusData.title}!`,
+				variant: "success",
+			});
 		} else {
-			handleDeleteImage(id);
-			dispatch(
-				sendNotification({
-					message: `Success: Unliked  ${imagePlusData.title}!`,
-					variant: "success",
-				})
-			);
+			handleDeleteImage(imagePlusData);
 		}
 	};
 
-	const handleDeleteImage = (id) => {
-		dispatch(imageDelete(id));
-		setImageData(imageData.filter((image) => image.id !== id));
+	const handleDeleteImage = (e) => {
+		setSingleImage(e);
+		dispatch(imageDelete(e.id));
 	};
+
+	useEffect(() => {
+		if (imageDeletion.status === "succeeded") {
+			setImageData(
+				imageData.filter((image) => image.id !== singleImage.id)
+			);
+			handleNotification({
+				message: `Unliked ${singleImage.title}!`,
+				variant: "success",
+			});
+		}
+		if (imageDeletion.status === "failed") {
+			handleNotification({
+				message: `Unable to unlike ${singleImage.title}!`,
+				variant: "error",
+			});
+		}
+	}, [imageDeletion]);
 
 	useEffect(() => {
 		if (searchData.status === "succeeded") {
@@ -104,15 +122,17 @@ const App = () => {
 		}
 		if (searchData.status === "failed") {
 			setImageLoaded(true);
-			dispatch(
-				sendNotification({
-					message: "Error: Image not found",
-					variant: "error",
-				})
-			);
+
+			handleNotification({
+				message: "Error: Image not found",
+				variant: "error",
+			});
 		}
-		console.log(searchData);
 	}, [searchData]);
+
+	const handleNotification = (e) => {
+		dispatch(sendNotification(e));
+	};
 
 	return (
 		<SnackbarProvider

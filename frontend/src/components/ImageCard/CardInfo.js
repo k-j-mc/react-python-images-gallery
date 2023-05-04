@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContent, Grid, Typography } from "@mui/material";
+import { CardContent, Grid, Link, Typography } from "@mui/material";
 import Icons from "../Icons";
 
 import "semantic-ui-flag/flag.min.css";
@@ -68,8 +68,14 @@ const CardInfo = (props) => {
 				</Grid>
 			</Grid>
 			<Typography paragraph>
-				{data.user.portfolio_url &&
-					"Portfolio: " + data.user.portfolio_url}
+				{data.user.portfolio_url && (
+					<>
+						Portfolio:{" "}
+						<Link href={data.user.portfolio_url} underline="none">
+							{data.user.portfolio_url}
+						</Link>
+					</>
+				)}
 			</Typography>
 		</CardContent>
 	);

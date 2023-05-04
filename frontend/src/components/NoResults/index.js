@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Link, Typography } from "@mui/material";
 
 import { ReactComponent as Logo } from "../../images/Images Gallery.svg";
 
@@ -21,7 +21,11 @@ const NoResults = () => {
 				<Typography variant="h6" style={{ padding: "50px 0 50px 0" }}>
 					Please proceed by searching for images
 				</Typography>
-				<Button>Unsplash</Button>
+				<Button>
+					<Link href="https://unsplash.com/" underline="none">
+						Unsplash API
+					</Link>
+				</Button>
 			</Grid>
 			<Grid item xs={2} />
 		</Grid>

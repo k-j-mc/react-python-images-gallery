@@ -14,11 +14,13 @@ import Icons from "../Icons";
 const CardHeading = (props) => {
 	const { data, handleDeleteImage } = props;
 
+	const [urlType, setUrlType] = useState(data.urls.regular);
+
 	const menuItems = [
 		{ name: "View Full resolution", link: data.urls.full },
 		{ name: "View Raw resolution", link: data.urls.raw },
 		{ name: "View Regular resolution", link: data.urls.regular },
-		{ name: "Remove ", link: data.urls.regular },
+		{ name: "Remove ", link: "" },
 	];
 
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -33,7 +35,10 @@ const CardHeading = (props) => {
 
 	const handleMenuClick = (e) => {
 		if (e.actionId === 3) {
-			handleDeleteImage(e.imageId);
+			handleDeleteImage(e);
+		} else {
+			setUrlType(menuItems[e.actionId].link);
+			handleClose();
 		}
 	};
 
@@ -57,7 +62,7 @@ const CardHeading = (props) => {
 									key={i.toString()}
 									onClick={() =>
 										handleMenuClick({
-											imageId: data.id,
+											...data,
 											actionId: i,
 										})
 									}
@@ -73,15 +78,15 @@ const CardHeading = (props) => {
 					undefined,
 					{
 						year: "numeric",
-						month: "long",
+						month: "numeric",
 						day: "numeric",
 					}
 				)}
 			/>
 			<CardMedia
 				component="img"
-				height="250"
-				image={data.urls.regular}
+				height={250}
+				image={urlType}
 				alt={data.title}
 				style={{ marginBottom: "30px" }}
 			/>

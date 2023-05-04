@@ -10,7 +10,6 @@ const initialState = {
 };
 
 export const imageDelete = createAsyncThunk("imageDelete", async (e) => {
-	console.log(e);
 	const response = await axios
 		.delete(`${API_URL}/images/${e}`)
 		.then((response) => response.data)
@@ -29,8 +28,13 @@ export const imageDeleteSlice = createSlice({
 		});
 
 		builder.addCase(imageDelete.fulfilled, (state, action) => {
-			state.data = action.payload;
-			state.status = "succeeded";
+			if (action.payload?.deleted_image_id) {
+				state.data = action.payload;
+				state.status = "succeeded";
+			} else {
+				state.data = action.payload;
+				state.status = "failed";
+			}
 		});
 
 		builder.addCase(imageDelete.rejected, (state, action) => {
